@@ -1,0 +1,27 @@
+name: cve126916
+
+services:
+  lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cve-2026-126916:lab
+    pull_policy: never
+    init: true
+    restart: "no"
+    shm_size: "2gb"
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "127.0.0.1:18650:18650"
+    volumes:
+      - ./:/out
+      - ./poc.py:/lab/poc.py:ro
+      - ./poc.html:/lab/poc.html:ro
+      - ./poc.js:/lab/poc.js:ro
+      - ./start.sh:/lab/start.sh:ro
+    labels:
+      lab: CVE-2026-126916
+      cve: CVE-2026-126916
+    environment:
+      PYTHONUNBUFFERED: "1"

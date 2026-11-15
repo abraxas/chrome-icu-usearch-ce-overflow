@@ -1,0 +1,5 @@
+poc-last-run.txt
+debug
+__pycache__
+*.pyc
+*.dmp
